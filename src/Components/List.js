@@ -12,6 +12,7 @@ class List extends Component {
     }
 
     this.addMovie = this.addMovie.bind(this)
+    this.deleteMovie = this.deleteMovie.bind(this)
   }
 
   addMovie(title, year, posterImg) {
@@ -26,11 +27,20 @@ class List extends Component {
     })
   }
 
-  deleteMovie(id) {}
+  deleteMovie(id) {
+    const index = this.state.movies.findIndex((e) => e.id === id)
+    const movieCopy = [...this.state.movies]
+    movieCopy.splice(index, 1)
+    this.setState({
+      movies: movieCopy,
+    })
+  }
 
   render() {
     const moviesMap = this.state.movies.map((movie) => {
-      return <ListItem key={movie.id} movie={movie} />
+      return (
+        <ListItem deleteMovie={this.deleteMovie} key={movie.id} movie={movie} />
+      )
     })
     return (
       <div className="List">

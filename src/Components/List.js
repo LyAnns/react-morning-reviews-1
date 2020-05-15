@@ -10,9 +10,21 @@ class List extends Component {
     this.state = {
       movies: movies,
     }
+
+    this.addMovie = this.addMovie.bind(this)
   }
 
-  addMovie(title, year, posterImg) {}
+  addMovie(title, year, posterImg) {
+    const newId = this.state.movies[this.state.movies.length - 1].id + 1
+
+    const newMovie = { id: newId, title, year, posterImg }
+
+    const updatedList = [...this.state.movies, newMovie]
+
+    this.setState({
+      movies: updatedList,
+    })
+  }
 
   deleteMovie(id) {}
 
@@ -22,7 +34,7 @@ class List extends Component {
     })
     return (
       <div className="List">
-        <Form />
+        <Form addMovie={this.addMovie} />
         {moviesMap}
       </div>
     )

@@ -11,16 +11,36 @@ class Form extends Component {
     }
   }
 
-  handleAdd(e) {}
+  handleAdd(e) {
+    e.preventDefault()
+    const { title, year, posterImg } = this.state
+    this.props.addMovie(title, year, posterImg)
+  }
 
-  handleChange(e) {}
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    })
+  }
 
   render() {
     return (
-      <form className="Form">
-        <input name="title" placeholder="Title" />
-        <input name="year" placeholder="Year" />
-        <input name="posterImg" placeholder="Poster url" />
+      <form onSubmit={(e) => this.handleAdd(e)} className="Form">
+        <input
+          onChange={(e) => this.handleChange(e)}
+          name="title"
+          placeholder="Title"
+        />
+        <input
+          onChange={(e) => this.handleChange(e)}
+          name="year"
+          placeholder="Year"
+        />
+        <input
+          onChange={(e) => this.handleChange(e)}
+          name="posterImg"
+          placeholder="Poster url"
+        />
         <button type="submit">Add Movie</button>
       </form>
     )

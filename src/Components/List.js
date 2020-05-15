@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
+import ListItem from './ListItem'
+import Form from './Form'
+import movies from '../data/movies.json'
 
 class List extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      movies: [],
+      movies: movies,
     }
-
 
     this.addMovie = this.addMovie.bind(this)
     this.deleteMovie = this.deleteMovie.bind(this)
@@ -46,7 +48,6 @@ class List extends Component {
         {moviesMap}
       </div>
     )
-
   }
 }
 export default List
